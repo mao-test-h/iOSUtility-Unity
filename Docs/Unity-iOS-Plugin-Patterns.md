@@ -16,8 +16,8 @@ C# (Unity) ←→ P/Invoke ←→ Swift (@_cdecl) ←→ iOS Frameworks
 - メソッド名: `ShareFile`
 
 ```swift
-@_cdecl("iOS_Utility_NativeShare_ShareFile")
-public func iOS_Utility_NativeShare_ShareFile() {
+@_cdecl("iOSUtility_NativeShare_ShareFile")
+public func iOSUtility_NativeShare_ShareFile() {
     print("[Swift]: Hello World")
 }
 ```
