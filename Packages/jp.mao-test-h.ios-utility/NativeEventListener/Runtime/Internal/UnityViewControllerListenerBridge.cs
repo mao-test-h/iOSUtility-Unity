@@ -61,7 +61,7 @@ namespace iOSUtility.NativeEventListener
         }
 
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_CreateUnityViewControllerListenerBridge")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_CreateUnityViewControllerListenerBridge")]
         private static extern IntPtr CreateUnityViewControllerListenerBridge(
             ViewWillLayoutSubviewsCallback viewWillLayoutSubviewsCallback,
             ViewDidLayoutSubviewsCallback viewDidLayoutSubviewsCallback,
@@ -72,13 +72,13 @@ namespace iOSUtility.NativeEventListener
             InterfaceWillChangeOrientationCallback interfaceWillChangeOrientationCallback,
             InterfaceDidChangeOrientationCallback interfaceDidChangeOrientationCallback);
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_ReleaseUnityViewControllerListenerBridge")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_ReleaseUnityViewControllerListenerBridge")]
         private static extern void ReleaseUnityViewControllerListenerBridge(IntPtr ptr);
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_UnityRegisterViewControllerListener")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_UnityRegisterViewControllerListener")]
         private static extern void UnityRegisterViewControllerListener(IntPtr ptr);
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_UnityUnregisterViewControllerListener")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_UnityUnregisterViewControllerListener")]
         private static extern void UnityUnregisterViewControllerListener(IntPtr ptr);
 
 

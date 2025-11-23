@@ -86,7 +86,7 @@ typedef void (*UnityDidQuitCallback)(void* context);
 extern "C" {
 #endif
 
-void* UnityIOSPluginBaseBridge_CreateLifeCycleListenerBridge(
+void* iOSUtility_NativeEventListener_CreateLifeCycleListenerBridge(
                                                                DidFinishLaunchingCallback didFinishLaunchingCallback,
                                                                DidBecomeActiveCallback didBecomeActiveCallback,
                                                                WillResignActiveCallback willResignActiveCallback,
@@ -108,7 +108,7 @@ void* UnityIOSPluginBaseBridge_CreateLifeCycleListenerBridge(
     return (__bridge_retained void*)bridge;
 }
 
-void UnityIOSPluginBaseBridge_ReleaseLifeCycleListenerBridge(void* ptr)
+void iOSUtility_NativeEventListener_ReleaseLifeCycleListenerBridge(void* ptr)
 {
     LifeCycleListenerBridge* bridge = (__bridge_transfer LifeCycleListenerBridge*)ptr;
     bridge.didFinishLaunchingCallback = nil;
@@ -121,13 +121,13 @@ void UnityIOSPluginBaseBridge_ReleaseLifeCycleListenerBridge(void* ptr)
     bridge.unityDidQuitCallback = nil;
 }
 
-void UnityIOSPluginBaseBridge_UnityRegisterLifeCycleListener(void* ptr)
+void iOSUtility_NativeEventListener_UnityRegisterLifeCycleListener(void* ptr)
 {
     LifeCycleListenerBridge* bridge = (__bridge LifeCycleListenerBridge*)ptr;
     UnityRegisterLifeCycleListener(bridge);
 }
 
-void UnityIOSPluginBaseBridge_UnityUnregisterLifeCycleListener(void* ptr)
+void iOSUtility_NativeEventListener_UnityUnregisterLifeCycleListener(void* ptr)
 {
     LifeCycleListenerBridge* bridge = (__bridge LifeCycleListenerBridge*)ptr;
     UnityUnregisterLifeCycleListener(bridge);

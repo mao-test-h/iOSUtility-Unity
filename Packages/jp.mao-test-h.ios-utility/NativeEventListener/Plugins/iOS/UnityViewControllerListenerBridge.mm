@@ -94,7 +94,7 @@ typedef void (*InterfaceDidChangeOrientationCallback)(void* context);
 extern "C" {
 #endif
 
-void* UnityIOSPluginBaseBridge_CreateUnityViewControllerListenerBridge(
+void* iOSUtility_NativeEventListener_CreateUnityViewControllerListenerBridge(
                                                                  ViewWillLayoutSubviewsCallback viewWillLayoutSubviewsCallback,
                                                                  ViewDidLayoutSubviewsCallback viewDidLayoutSubviewsCallback,
                                                                  ViewWillDisappearCallback viewWillDisappearCallback,
@@ -116,7 +116,7 @@ void* UnityIOSPluginBaseBridge_CreateUnityViewControllerListenerBridge(
     return (__bridge_retained void*)bridge;
 }
 
-void UnityIOSPluginBaseBridge_ReleaseUnityViewControllerListenerBridge(void* ptr)
+void iOSUtility_NativeEventListener_ReleaseUnityViewControllerListenerBridge(void* ptr)
 {
     UnityViewControllerListenerBridge* bridge = (__bridge_transfer UnityViewControllerListenerBridge*)ptr;
     bridge.viewWillLayoutSubviewsCallback = nil;
@@ -129,13 +129,13 @@ void UnityIOSPluginBaseBridge_ReleaseUnityViewControllerListenerBridge(void* ptr
     bridge.interfaceDidChangeOrientationCallback = nil;
 }
 
-void UnityIOSPluginBaseBridge_UnityRegisterViewControllerListener(void* ptr)
+void iOSUtility_NativeEventListener_UnityRegisterViewControllerListener(void* ptr)
 {
     UnityViewControllerListenerBridge* bridge = (__bridge UnityViewControllerListenerBridge*)ptr;
     UnityRegisterViewControllerListener(bridge);
 }
 
-void UnityIOSPluginBaseBridge_UnityUnregisterViewControllerListener(void* ptr)
+void iOSUtility_NativeEventListener_UnityUnregisterViewControllerListener(void* ptr)
 {
     UnityViewControllerListenerBridge* bridge = (__bridge UnityViewControllerListenerBridge*)ptr;
     UnityUnregisterViewControllerListener(bridge);

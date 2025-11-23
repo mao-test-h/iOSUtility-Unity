@@ -61,7 +61,7 @@ namespace iOSUtility.NativeEventListener
         }
 
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_CreateLifeCycleListenerBridge")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_CreateLifeCycleListenerBridge")]
         private static extern IntPtr CreateLifeCycleListenerBridge(
             DidFinishLaunchingCallback didFinishLaunchingCallback,
             DidBecomeActiveCallback didBecomeActiveCallback,
@@ -72,13 +72,13 @@ namespace iOSUtility.NativeEventListener
             UnityDidUnloadCallback unityDidUnloadCallback,
             UnityDidQuitCallback unityDidQuitCallback);
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_ReleaseLifeCycleListenerBridge")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_ReleaseLifeCycleListenerBridge")]
         private static extern void ReleaseLifeCycleListenerBridge(IntPtr ptr);
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_UnityRegisterLifeCycleListener")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_UnityRegisterLifeCycleListener")]
         private static extern void UnityRegisterLifeCycleListener(IntPtr ptr);
 
-        [DllImport("__Internal", EntryPoint = "UnityIOSPluginBaseBridge_UnityUnregisterLifeCycleListener")]
+        [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_UnityUnregisterLifeCycleListener")]
         private static extern void UnityUnregisterLifeCycleListener(IntPtr ptr);
 
 
