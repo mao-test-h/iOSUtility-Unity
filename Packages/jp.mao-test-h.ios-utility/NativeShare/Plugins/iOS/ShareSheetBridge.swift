@@ -12,7 +12,7 @@ public func iOSUtility_NativeShare_ShareFile(filePath: UnsafePointer<CChar>, sub
 private class ShareSheetManager {
     fileprivate static let shared = ShareSheetManager()
     
-    public func showShareSheet(filePath: String, subject: String, text: String) {
+    fileprivate func showShareSheet(filePath: String, subject: String, text: String) {
         DispatchQueue.main.async { [weak self] in
             self?.presentShareSheet(filePath: filePath, subject: subject, text: text)
         }
