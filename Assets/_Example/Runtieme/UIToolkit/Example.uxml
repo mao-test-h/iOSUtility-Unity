@@ -7,7 +7,9 @@
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd">
     <Style
         src="project://database/Assets/_Example/Runtieme/UIToolkit/Example.uss?fileID=7433441132597879392&amp;guid=4648da82e714a4acbae53d70bbb1d8c2&amp;type=3#Example" />
-    <ui:VisualElement class="container">
-        <ui:Button name="ShareButton" text="Share Screenshot" class="share-button" />
+    <ui:VisualElement class="example-view">
+        <ui:VisualElement class="example-view__content">
+            <ui:Button name="ShareButton" text="Share Screenshot" class="example-view__share-button" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
