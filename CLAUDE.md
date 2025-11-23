@@ -43,12 +43,18 @@ Packages/jp.mao-test-h.ios-utility/
 
 ------------------------------
 
+# ワークフロー
+
+- 不明点がある場合には AskUserQuestion ツールで聞いてください
+
 # ネイティブプラグイン開発
 
 iOS のネイティブプラグインの実装方法については以下のドキュメントを参照すること。
 
 - ./Docs/Unity-iOS-Plugin-Patterns.md
 
-# ワークフロー
+# UITooklit について
 
-- 不明点がある場合には AskUserQuestion ツールで聞いてください
+UIToolkit で View を作る際には以下のリンクを参照して、ベストプラクティスに沿った実装を行うこと。
+
+- https://docs.unity3d.com/Documentation/Manual/UIE-best-practices-for-managing-elements.html

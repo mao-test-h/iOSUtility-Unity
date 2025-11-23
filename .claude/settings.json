@@ -9,6 +9,7 @@
             "Bash(mv:*)",
             "Bash(ls:*)",
             "Bash(rg:*)",
+            "Bash(tree:*)",
             "Bash(git add:*)",
             "Bash(git branch:*)",
             "Bash(git checkout:*)",
@@ -26,7 +27,10 @@
             "Bash(gh pr create:*)",
             "Bash(gh pr edit:*)",
             "Bash(gh pr list:*)",
-            "Bash(gh pr view:*)"
+            "Bash(gh pr view:*)",
+            "WebFetch(domain:docs.unity3d.com)",
+            "WebFetch(domain:github.com)",
+            "WebFetch(domain:developer.apple.com)"
         ],
         "deny": [
             "Bash(sudo:*)",
@@ -59,7 +63,6 @@
             "Read(**/*.p12)",
             "Read(**/*.keystore)",
             "Read(**/*.mobileprovision)",
-            "WebFetch(domain:*)"
         ]
     },
     "hooks": {
