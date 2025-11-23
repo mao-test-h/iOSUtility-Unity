@@ -11,20 +11,17 @@ namespace iOSUtility.NativeShare
         {
             get
             {
-                _instance ??= new NativeShareDummy();
+                _instance ??=
+#if UNITY_IOS && !UNITY_EDITOR
+                    new NativeShareIOS();
+#elif UNITY_EDITOR
+                    new NativeShareEditor();
+#else
+                    new NativeShareDummy();
+#endif
+
                 return _instance;
             }
-        }
-
-        private static INativeShare Create()
-        {
-#if UNITY_IOS && !UNITY_EDITOR
-            return new NativeShareIOS();
-#elif UNITY_EDITOR
-            return new NativeShareEditor();
-#else
-            return new NativeShareDummy();
-#endif
         }
 
         /// <summary>
