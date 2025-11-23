@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
 using iOSUtility.NativeShare;
+using UnityEngine.Assertions;
 
 namespace _Example
 {
@@ -11,39 +12,40 @@ namespace _Example
         [SerializeField] private UIDocument uiDocument;
 
         private Button _shareButton;
+        private Button _playVideoButton;
 
         private void Start()
         {
-            if (uiDocument == null)
-            {
-                Debug.LogError("UIDocument is not assigned.");
-                return;
-            }
+            Assert.IsTrue(uiDocument != null, "UIDocument is not assigned.");
 
             var root = uiDocument.rootVisualElement;
-            _shareButton = root.Q<Button>("ShareButton");
 
-            if (_shareButton != null)
-            {
-                _shareButton.clicked += OnShareButtonClicked;
-            }
-            else
-            {
-                Debug.LogError("ShareButton not found in UXML.");
-            }
+            _shareButton = root.Q<Button>("ShareButton");
+            Assert.IsTrue(_shareButton != null, "ShareButton not found in UXML.");
+            _shareButton.clicked += OnShareButtonClicked;
+
+            _playVideoButton = root.Q<Button>("PlayVideoButton");
+            Assert.IsTrue(_playVideoButton != null, "PlayVideoButton not found in UXML.");
+            _playVideoButton.clicked += OnPlayVideoButtonClicked;
         }
 
         private void OnDestroy()
         {
-            if (_shareButton != null)
-            {
-                _shareButton.clicked -= OnShareButtonClicked;
-            }
+            _shareButton.clicked -= OnShareButtonClicked;
+            _playVideoButton.clicked -= OnPlayVideoButtonClicked;
         }
 
         private void OnShareButtonClicked()
         {
             StartCoroutine(CaptureAndShareScreenshot());
+        }
+
+        private void OnPlayVideoButtonClicked()
+        {
+            // UIVIewController が内部的に切り替わった際のイベント確認用にフルスクリーン動画を再生
+            const string url = "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8";
+            var ret = Handheld.PlayFullScreenMovie(url);
+            Debug.Log($"Handheld.PlayFullScreenMovie returned {ret}");
         }
 
         private IEnumerator CaptureAndShareScreenshot()
