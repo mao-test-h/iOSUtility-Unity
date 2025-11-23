@@ -87,14 +87,14 @@ extern "C" {
 #endif
 
 void* iOSUtility_NativeEventListener_CreateLifeCycleListenerBridge(
-                                                               DidFinishLaunchingCallback didFinishLaunchingCallback,
-                                                               DidBecomeActiveCallback didBecomeActiveCallback,
-                                                               WillResignActiveCallback willResignActiveCallback,
-                                                               DidEnterBackgroundCallback didEnterBackgroundCallback,
-                                                               WillEnterForegroundCallback willEnterForegroundCallback,
-                                                               WillTerminateCallback willTerminateCallback,
-                                                               UnityDidUnloadCallback unityDidUnloadCallback,
-                                                               UnityDidQuitCallback unityDidQuitCallback)
+                                                                   DidFinishLaunchingCallback didFinishLaunchingCallback,
+                                                                   DidBecomeActiveCallback didBecomeActiveCallback,
+                                                                   WillResignActiveCallback willResignActiveCallback,
+                                                                   DidEnterBackgroundCallback didEnterBackgroundCallback,
+                                                                   WillEnterForegroundCallback willEnterForegroundCallback,
+                                                                   WillTerminateCallback willTerminateCallback,
+                                                                   UnityDidUnloadCallback unityDidUnloadCallback,
+                                                                   UnityDidQuitCallback unityDidQuitCallback)
 {
     LifeCycleListenerBridge* bridge = [[LifeCycleListenerBridge alloc] init];
     bridge.didFinishLaunchingCallback = didFinishLaunchingCallback;

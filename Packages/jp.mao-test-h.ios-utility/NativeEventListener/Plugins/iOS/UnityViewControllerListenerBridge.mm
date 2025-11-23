@@ -95,14 +95,14 @@ extern "C" {
 #endif
 
 void* iOSUtility_NativeEventListener_CreateUnityViewControllerListenerBridge(
-                                                                 ViewWillLayoutSubviewsCallback viewWillLayoutSubviewsCallback,
-                                                                 ViewDidLayoutSubviewsCallback viewDidLayoutSubviewsCallback,
-                                                                 ViewWillDisappearCallback viewWillDisappearCallback,
-                                                                 ViewDidDisappearCallback viewDidDisappearCallback,
-                                                                 ViewWillAppearCallback viewWillAppearCallback,
-                                                                 ViewDidAppearCallback viewDidAppearCallback,
-                                                                 InterfaceWillChangeOrientationCallback interfaceWillChangeOrientationCallback,
-                                                                 InterfaceDidChangeOrientationCallback interfaceDidChangeOrientationCallback)
+                                                                             ViewWillLayoutSubviewsCallback viewWillLayoutSubviewsCallback,
+                                                                             ViewDidLayoutSubviewsCallback viewDidLayoutSubviewsCallback,
+                                                                             ViewWillDisappearCallback viewWillDisappearCallback,
+                                                                             ViewDidDisappearCallback viewDidDisappearCallback,
+                                                                             ViewWillAppearCallback viewWillAppearCallback,
+                                                                             ViewDidAppearCallback viewDidAppearCallback,
+                                                                             InterfaceWillChangeOrientationCallback interfaceWillChangeOrientationCallback,
+                                                                             InterfaceDidChangeOrientationCallback interfaceDidChangeOrientationCallback)
 {
     UnityViewControllerListenerBridge* bridge = [[UnityViewControllerListenerBridge alloc] init];
     bridge.viewWillLayoutSubviewsCallback = viewWillLayoutSubviewsCallback;
