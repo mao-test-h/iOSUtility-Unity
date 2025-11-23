@@ -9,6 +9,7 @@ namespace _Example
         private static string Tag => $"[{nameof(NativeEventListener)}]";
         private IDisposable _unityViewControllerListenerBridge;
         private IDisposable _lifeCycleListenerBridge;
+        private IDisposable _appDelegateListenerBridge;
 
         private void Start()
         {
@@ -17,12 +18,16 @@ namespace _Example
 
             _lifeCycleListenerBridge = LifeCycleListenerBuilder
                 .Build(new LifeCycleListener());
+
+            _appDelegateListenerBridge = AppDelegateListenerBuilder
+                .Build(new AppDelegateListener());
         }
 
         private void OnDestroy()
         {
             _unityViewControllerListenerBridge?.Dispose();
             _lifeCycleListenerBridge?.Dispose();
+            _appDelegateListenerBridge?.Dispose();
         }
 
         private sealed class UnityViewControllerListener : IUnityViewControllerListener
@@ -108,6 +113,34 @@ namespace _Example
             public void OnUnityDidQuitCallbacks()
             {
                 Debug.Log($"{Tag} [ILifeCycleListener] OnUnityDidQuit");
+            }
+        }
+
+        private sealed class AppDelegateListener : IAppDelegateListener
+        {
+            public void OnOpenURL(string url, string sourceApplication)
+            {
+                Debug.Log($"{Tag} [IAppDelegateListener] OnOpenURL - URL: {url}, Source: {sourceApplication}");
+            }
+
+            public void OnApplicationWillFinishLaunchingWithOptions()
+            {
+                Debug.Log($"{Tag} [IAppDelegateListener] OnApplicationWillFinishLaunchingWithOptions");
+            }
+
+            public void OnHandleEventsForBackgroundURLSession(string identifier)
+            {
+                Debug.Log($"{Tag} [IAppDelegateListener] OnHandleEventsForBackgroundURLSession - Identifier: {identifier}");
+            }
+
+            public void OnApplicationDidReceiveMemoryWarning()
+            {
+                Debug.Log($"{Tag} [IAppDelegateListener] OnApplicationDidReceiveMemoryWarning");
+            }
+
+            public void OnApplicationSignificantTimeChange()
+            {
+                Debug.Log($"{Tag} [IAppDelegateListener] OnApplicationSignificantTimeChange");
             }
         }
     }
