@@ -6,6 +6,8 @@
 
 A Unity package that provides access to native iOS functionality through a clean C# API. This library allows Unity developers to easily integrate iOS native features such as event listeners and native sharing capabilities.
 
+[日本語版 README はこちら](./Packages/jp.mao-test-h.ios-utility/README-JP.md)
+
 ## Requirements
 
 - Unity 2022.3+
