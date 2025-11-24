@@ -4,27 +4,27 @@
 ![iOS](https://img.shields.io/badge/iOS-13.0%2B-000000?logo=apple)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-A Unity package that provides access to native iOS functionality through a clean C# API. This library allows Unity developers to easily integrate iOS native features such as event listeners and native sharing capabilities.
+Unity から iOS のネイティブ機能にアクセスするための Unity パッケージです。クリーンな C# API を通じて、イベントリスナーやネイティブ共有機能などの iOS ネイティブ機能を簡単に統合できます。
 
-## Requirements
+## 動作環境
 
 - Unity 2022.3+
 - iOS 13.0+
 
-## Installation
+## インストール
 
-Install via Unity Package Manager.
+Unity Package Manager 経由でインストールします。
 
-1. Open your project in Unity Editor
-2. Select Window > Package Manager
-3. Click the "+" button
-4. Select "Add package from git URL..." and enter the following URL
+1. Unity エディタでプロジェクトを開く
+2. Window > Package Manager を選択
+3. "+" ボタンをクリック
+4. "Add package from git URL..." を選択し、以下の URL を入力
 
 ```
 https://github.com/mao-test-h/iOSUtility-Unity.git?path=Packages/jp.mao-test-h.ios-utility
 ```
 
-Or add the following to your `Packages/manifest.json`:
+または、`Packages/manifest.json` に以下を追加:
 
 ```json
 {
@@ -34,11 +34,11 @@ Or add the following to your `Packages/manifest.json`:
 }
 ```
 
-## Features
+## 機能
 
 ### Native Share
 
-Share files using iOS native share sheet (UIActivityViewController).
+iOS のネイティブ共有シート（UIActivityViewController）を使ってファイルを共有します。
 
 ```csharp
 NativeShare.ShareFile(
@@ -50,7 +50,7 @@ NativeShare.ShareFile(
 
 ### Native Event Listener
 
-Monitor iOS native events from Unity with three types of listeners:
+Unity から iOS のネイティブイベントを監視できます。3種類のリスナーが用意されています:
 
 #### UnityViewController Listener
 - `OnViewWillLayoutSubviews` / `OnViewDidLayoutSubviews`
@@ -66,17 +66,17 @@ Monitor iOS native events from Unity with three types of listeners:
 - `OnUnityDidUnload` / `OnUnityDidQuit`
 
 #### AppDelegate Listener
-- `OnOpenURL` - Handle URL scheme deep links
+- `OnOpenURL` - URL スキームによるディープリンクの処理
 - `OnApplicationWillFinishLaunchingWithOptions`
-- `OnHandleEventsForBackgroundURLSession` - Background URL session handling
-- `OnApplicationDidReceiveMemoryWarning` - Memory warning notifications
-- `OnApplicationSignificantTimeChange` - Significant time change events
+- `OnHandleEventsForBackgroundURLSession` - バックグラウンド URL セッションの処理
+- `OnApplicationDidReceiveMemoryWarning` - メモリ警告の通知
+- `OnApplicationSignificantTimeChange` - 時刻の大幅な変更イベント
 
 
 
-## Usage
+## 使用方法
 
-### Native Event Listener Example
+### Native Event Listener の使用例
 
 ```csharp
 using System;
@@ -89,18 +89,18 @@ public class EventListenerExample : MonoBehaviour
 
     private void Start()
     {
-        // Create and register a lifecycle listener
+        // ライフサイクルリスナーを作成して登録
         _lifeCycleListenerBridge = LifeCycleListenerBuilder
             .Build(new LifeCycleListener());
     }
 
     private void OnDestroy()
     {
-        // Unregister listener
+        // リスナーの登録を解除
         _lifeCycleListenerBridge?.Dispose();
     }
 
-    // Implement the listener interface
+    // リスナーインターフェースの実装
     private sealed class LifeCycleListener : ILifeCycleListener
     {
         public void OnDidBecomeActiveCallbacks()
@@ -113,12 +113,12 @@ public class EventListenerExample : MonoBehaviour
             Debug.Log("App entered background");
         }
 
-        // Implement other interface methods...
+        // その他のインターフェースメソッドを実装...
     }
 }
 ```
 
-### Native Share Example
+### Native Share の使用例
 
 ```csharp
 using UnityEngine;
@@ -128,15 +128,15 @@ public class ShareExample : MonoBehaviour
 {
     public void ShareScreenshot()
     {
-        // Capture screenshot
+        // スクリーンショットをキャプチャ
         Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
         byte[] bytes = screenshot.EncodeToPNG();
 
-        // Save to temporary path
+        // 一時パスに保存
         string filePath = Path.Combine(Application.temporaryCachePath, "screenshot.png");
         File.WriteAllBytes(filePath, bytes);
 
-        // Share using native share sheet
+        // ネイティブ共有シートを使用して共有
         NativeShare.ShareFile(
             filePath: filePath,
             subject: "Screenshot from Unity",
@@ -148,14 +148,14 @@ public class ShareExample : MonoBehaviour
 }
 ```
 
-## Example Project
+## サンプルプロジェクト
 
-The `Assets/_Example/` directory contains a working demo that showcases all features:
+`Assets/_Example/` ディレクトリに全ての機能を実演する動作サンプルが含まれています:
 
-- **Screenshot Sharing**: Capture and share screenshots using native iOS share sheet
-- **Event Logging**: Monitor and log all iOS lifecycle and delegate events
-- **Video Playback**: Test ViewController transitions with fullscreen video playback
+- **Screenshot Sharing**: iOS のネイティブ共有シートを使ったスクリーンショットのキャプチャと共有
+- **Event Logging**: iOS のライフサイクルとデリゲートイベントの監視とログ出力
+- **Video Playback**: フルスクリーン動画再生による ViewController 遷移のテスト
 
-## License
+## ライセンス
 
 MIT License
