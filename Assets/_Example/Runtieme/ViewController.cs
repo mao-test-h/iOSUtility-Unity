@@ -13,6 +13,7 @@ namespace _Example
 
         private Button _shareButton;
         private Button _playVideoButton;
+        private Label _frameCountLabel;
 
         private void Start()
         {
@@ -27,6 +28,14 @@ namespace _Example
             _playVideoButton = root.Q<Button>("PlayVideoButton");
             Assert.IsTrue(_playVideoButton != null, "PlayVideoButton not found in UXML.");
             _playVideoButton.clicked += OnPlayVideoButtonClicked;
+
+            _frameCountLabel = root.Q<Label>("FrameCountLabel");
+            Assert.IsTrue(_frameCountLabel != null, "FrameCountLabel not found in UXML.");
+        }
+
+        private void Update()
+        {
+            _frameCountLabel.text = Time.frameCount.ToString();
         }
 
         private void OnDestroy()
