@@ -62,7 +62,7 @@
             "Read(**/*token*)",
             "Read(**/*.p12)",
             "Read(**/*.keystore)",
-            "Read(**/*.mobileprovision)",
+            "Read(**/*.mobileprovision)"
         ]
     },
     "hooks": {
