@@ -3,6 +3,20 @@
     flex-grow: 1;
 }
 
+/* Element: example-view__frame-count-label */
+/* NOTE: セーフエリアはC#側で動的に設定する */
+.example-view__frame-count-label {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 16px 16px;
+    border-radius: 8px;
+    -unity-font-style: bold;
+}
+
 /* Element: example-view__content */
 .example-view__content {
     flex-grow: 1;
@@ -13,6 +27,8 @@
 
 /* Element: example-view__share-button */
 .example-view__share-button {
+    margin-top: 8px;
+    margin-bottom: 8px;
     width: 200px;
     height: 60px;
     font-size: 18px;
