@@ -4,9 +4,9 @@
 ![iOS](https://img.shields.io/badge/iOS-13.0%2B-000000?logo=apple)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-A Unity package that provides access to native iOS functionality through a clean C# API. This library allows Unity developers to easily integrate iOS native features such as event listeners and native sharing capabilities.
+**English** | [日本語](./Packages/jp.mao-test-h.ios-utility/README-JP.md)
 
-[日本語版 README はこちら](./Packages/jp.mao-test-h.ios-utility/README-JP.md)
+A Unity package that provides access to native iOS functionality through a clean C# API. This library allows Unity developers to easily integrate iOS native features such as event listeners and native sharing capabilities.
 
 ## Requirements
 
