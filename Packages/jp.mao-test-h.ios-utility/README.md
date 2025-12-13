@@ -73,6 +73,8 @@ Monitor iOS native events from Unity with three types of listeners:
 - `OnHandleEventsForBackgroundURLSession` - Background URL session handling
 - `OnApplicationDidReceiveMemoryWarning` - Memory warning notifications
 - `OnApplicationSignificantTimeChange` - Significant time change events
+- `OnApplicationWillChangeStatusBarFrame` - Status bar frame change notifications
+- `OnApplicationWillChangeStatusBarOrientation` - Status bar orientation changes (uses `UIInterfaceOrientation` enum)
 
 
 

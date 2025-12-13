@@ -71,6 +71,8 @@ Unity から iOS のネイティブイベントを監視できます。3種類�
 - `OnHandleEventsForBackgroundURLSession` - バックグラウンド URL セッションの処理
 - `OnApplicationDidReceiveMemoryWarning` - メモリ警告の通知
 - `OnApplicationSignificantTimeChange` - 時刻の大幅な変更イベント
+- `OnApplicationWillChangeStatusBarFrame` - ステータスバーのフレーム変更通知
+- `OnApplicationWillChangeStatusBarOrientation` - ステータスバーの向き変更（`UIInterfaceOrientation` enum を使用）
 
 
 
