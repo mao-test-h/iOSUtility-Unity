@@ -20,7 +20,9 @@ namespace iOSUtility.NativeEventListener
                 ApplicationWillFinishLaunchingCallbackStatic,
                 OnHandleEventsForBackgroundURLSessionCallbackStatic,
                 ApplicationDidReceiveMemoryWarningCallbackStatic,
-                ApplicationSignificantTimeChangeCallbackStatic);
+                ApplicationSignificantTimeChangeCallbackStatic,
+                ApplicationWillChangeStatusBarFrameCallbackStatic,
+                ApplicationWillChangeStatusBarOrientationCallbackStatic);
 
             Assert.IsNotNull(appDelegateListener);
             Listeners[ptr] = appDelegateListener;
@@ -64,7 +66,9 @@ namespace iOSUtility.NativeEventListener
             ApplicationWillFinishLaunchingCallback applicationWillFinishLaunchingCallback,
             OnHandleEventsForBackgroundURLSessionCallback onHandleEventsForBackgroundURLSessionCallback,
             ApplicationDidReceiveMemoryWarningCallback applicationDidReceiveMemoryWarningCallback,
-            ApplicationSignificantTimeChangeCallback applicationSignificantTimeChangeCallback);
+            ApplicationSignificantTimeChangeCallback applicationSignificantTimeChangeCallback,
+            ApplicationWillChangeStatusBarFrameCallback applicationWillChangeStatusBarFrameCallback,
+            ApplicationWillChangeStatusBarOrientationCallback applicationWillChangeStatusBarOrientationCallback);
 
         [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_ReleaseAppDelegateListenerBridge")]
         private static extern void ReleaseAppDelegateListenerBridge(IntPtr ptr);
@@ -85,6 +89,11 @@ namespace iOSUtility.NativeEventListener
         private delegate void ApplicationDidReceiveMemoryWarningCallback(IntPtr context);
 
         private delegate void ApplicationSignificantTimeChangeCallback(IntPtr context);
+
+        private delegate void ApplicationWillChangeStatusBarFrameCallback(
+            IntPtr context, float frameX, float frameY, float frameWidth, float frameHeight);
+
+        private delegate void ApplicationWillChangeStatusBarOrientationCallback(IntPtr context, int orientation);
 
         [MonoPInvokeCallback(typeof(OnOpenURLCallback))]
         private static void OnOpenURLCallbackStatic(IntPtr context, string url, string sourceApplication)
@@ -128,6 +137,25 @@ namespace iOSUtility.NativeEventListener
             if (Listeners.TryGetValue(context, out var listenerInstance))
             {
                 listenerInstance.OnApplicationSignificantTimeChange();
+            }
+        }
+
+        [MonoPInvokeCallback(typeof(ApplicationWillChangeStatusBarFrameCallback))]
+        private static void ApplicationWillChangeStatusBarFrameCallbackStatic(
+            IntPtr context, float frameX, float frameY, float frameWidth, float frameHeight)
+        {
+            if (Listeners.TryGetValue(context, out var listenerInstance))
+            {
+                listenerInstance.OnApplicationWillChangeStatusBarFrame(frameX, frameY, frameWidth, frameHeight);
+            }
+        }
+
+        [MonoPInvokeCallback(typeof(ApplicationWillChangeStatusBarOrientationCallback))]
+        private static void ApplicationWillChangeStatusBarOrientationCallbackStatic(IntPtr context, int orientation)
+        {
+            if (Listeners.TryGetValue(context, out var listenerInstance))
+            {
+                listenerInstance.OnApplicationWillChangeStatusBarOrientation((UIInterfaceOrientation)orientation);
             }
         }
     }

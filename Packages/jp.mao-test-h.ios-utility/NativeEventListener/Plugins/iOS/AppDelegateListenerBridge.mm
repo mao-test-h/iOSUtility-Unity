@@ -7,6 +7,8 @@ typedef void (*ApplicationWillFinishLaunchingCallback)(void* context);
 typedef void (*OnHandleEventsForBackgroundURLSessionCallback)(void* context, const char* identifier);
 typedef void (*ApplicationDidReceiveMemoryWarningCallback)(void* context);
 typedef void (*ApplicationSignificantTimeChangeCallback)(void* context);
+typedef void (*ApplicationWillChangeStatusBarFrameCallback)(void* context, float frameX, float frameY, float frameWidth, float frameHeight);
+typedef void (*ApplicationWillChangeStatusBarOrientationCallback)(void* context, int orientation);
 
 @interface AppDelegateListenerBridge : NSObject<AppDelegateListener>
 @property (nonatomic, assign) OnOpenURLCallback onOpenURLCallback;
@@ -14,6 +16,8 @@ typedef void (*ApplicationSignificantTimeChangeCallback)(void* context);
 @property (nonatomic, assign) OnHandleEventsForBackgroundURLSessionCallback onHandleEventsForBackgroundURLSessionCallback;
 @property (nonatomic, assign) ApplicationDidReceiveMemoryWarningCallback applicationDidReceiveMemoryWarningCallback;
 @property (nonatomic, assign) ApplicationSignificantTimeChangeCallback applicationSignificantTimeChangeCallback;
+@property (nonatomic, assign) ApplicationWillChangeStatusBarFrameCallback applicationWillChangeStatusBarFrameCallback;
+@property (nonatomic, assign) ApplicationWillChangeStatusBarOrientationCallback applicationWillChangeStatusBarOrientationCallback;
 @end
 
 @implementation AppDelegateListenerBridge
@@ -65,6 +69,32 @@ typedef void (*ApplicationSignificantTimeChangeCallback)(void* context);
     }
 }
 
+- (void)applicationWillChangeStatusBarFrame:(NSNotification*)notification
+{
+    if (self.applicationWillChangeStatusBarFrameCallback) {
+        NSDictionary* userInfo = notification.userInfo;
+        NSValue* frameValue = userInfo[UIApplicationStatusBarFrameUserInfoKey];
+        CGRect frame = [frameValue CGRectValue];
+        
+        self.applicationWillChangeStatusBarFrameCallback((__bridge void*)self,
+                                                         (float)frame.origin.x,
+                                                         (float)frame.origin.y,
+                                                         (float)frame.size.width,
+                                                         (float)frame.size.height);
+    }
+}
+
+- (void)applicationWillChangeStatusBarOrientation:(NSNotification*)notification
+{
+    if (self.applicationWillChangeStatusBarOrientationCallback) {
+        NSDictionary* userInfo = notification.userInfo;
+        NSNumber* orientationValue = userInfo[UIApplicationStatusBarOrientationUserInfoKey];
+        int orientation = [orientationValue intValue];
+        
+        self.applicationWillChangeStatusBarOrientationCallback((__bridge void*)self, orientation);
+    }
+}
+
 @end
 
 #ifdef __cplusplus
@@ -76,7 +106,9 @@ void* iOSUtility_NativeEventListener_CreateAppDelegateListenerBridge(
                                                                      ApplicationWillFinishLaunchingCallback applicationWillFinishLaunchingCallback,
                                                                      OnHandleEventsForBackgroundURLSessionCallback onHandleEventsForBackgroundURLSessionCallback,
                                                                      ApplicationDidReceiveMemoryWarningCallback applicationDidReceiveMemoryWarningCallback,
-                                                                     ApplicationSignificantTimeChangeCallback applicationSignificantTimeChangeCallback)
+                                                                     ApplicationSignificantTimeChangeCallback applicationSignificantTimeChangeCallback,
+                                                                     ApplicationWillChangeStatusBarFrameCallback applicationWillChangeStatusBarFrameCallback,
+                                                                     ApplicationWillChangeStatusBarOrientationCallback applicationWillChangeStatusBarOrientationCallback)
 {
     AppDelegateListenerBridge* bridge = [[AppDelegateListenerBridge alloc] init];
     bridge.onOpenURLCallback = onOpenURLCallback;
@@ -84,6 +116,8 @@ void* iOSUtility_NativeEventListener_CreateAppDelegateListenerBridge(
     bridge.onHandleEventsForBackgroundURLSessionCallback = onHandleEventsForBackgroundURLSessionCallback;
     bridge.applicationDidReceiveMemoryWarningCallback = applicationDidReceiveMemoryWarningCallback;
     bridge.applicationSignificantTimeChangeCallback = applicationSignificantTimeChangeCallback;
+    bridge.applicationWillChangeStatusBarFrameCallback = applicationWillChangeStatusBarFrameCallback;
+    bridge.applicationWillChangeStatusBarOrientationCallback = applicationWillChangeStatusBarOrientationCallback;
     return (__bridge_retained void*)bridge;
 }
 
@@ -95,6 +129,8 @@ void iOSUtility_NativeEventListener_ReleaseAppDelegateListenerBridge(void* ptr)
     bridge.onHandleEventsForBackgroundURLSessionCallback = nil;
     bridge.applicationDidReceiveMemoryWarningCallback = nil;
     bridge.applicationSignificantTimeChangeCallback = nil;
+    bridge.applicationWillChangeStatusBarFrameCallback = nil;
+    bridge.applicationWillChangeStatusBarOrientationCallback = nil;
 }
 
 void iOSUtility_NativeEventListener_UnityRegisterAppDelegateListener(void* ptr)
