@@ -39,5 +39,20 @@ namespace iOSUtility.NativeEventListener
         /// 例: 日付が変わった、タイムゾーンが変更された、サマータイムの切り替えなど。
         /// </summary>
         void OnApplicationSignificantTimeChange();
+
+        /// <summary>
+        /// ステータスバーのフレームが変更される直前に呼ばれます。
+        /// </summary>
+        /// <param name="x">新しいステータスバーフレームの X 座標</param>
+        /// <param name="y">新しいステータスバーフレームの Y 座標</param>
+        /// <param name="width">新しいステータスバーフレームの幅</param>
+        /// <param name="height">新しいステータスバーフレームの高さ</param>
+        void OnApplicationWillChangeStatusBarFrame(float x, float y, float width, float height);
+
+        /// <summary>
+        /// ステータスバーの向きが変更される直前に呼ばれます。
+        /// </summary>
+        /// <param name="orientation">新しい画面の向き (UIInterfaceOrientation: 1=Portrait, 2=LandscapeRight, 3=PortraitUpsideDown, 4=LandscapeLeft)</param>
+        void OnApplicationWillChangeStatusBarOrientation(int orientation);
     }
 }
