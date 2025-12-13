@@ -90,7 +90,8 @@ namespace iOSUtility.NativeEventListener
 
         private delegate void ApplicationSignificantTimeChangeCallback(IntPtr context);
 
-        private delegate void ApplicationWillChangeStatusBarFrameCallback(IntPtr context, float frameX, float frameY, float frameWidth, float frameHeight);
+        private delegate void ApplicationWillChangeStatusBarFrameCallback(
+            IntPtr context, float frameX, float frameY, float frameWidth, float frameHeight);
 
         private delegate void ApplicationWillChangeStatusBarOrientationCallback(IntPtr context, int orientation);
 
@@ -140,7 +141,8 @@ namespace iOSUtility.NativeEventListener
         }
 
         [MonoPInvokeCallback(typeof(ApplicationWillChangeStatusBarFrameCallback))]
-        private static void ApplicationWillChangeStatusBarFrameCallbackStatic(IntPtr context, float frameX, float frameY, float frameWidth, float frameHeight)
+        private static void ApplicationWillChangeStatusBarFrameCallbackStatic(
+            IntPtr context, float frameX, float frameY, float frameWidth, float frameHeight)
         {
             if (Listeners.TryGetValue(context, out var listenerInstance))
             {
@@ -153,7 +155,7 @@ namespace iOSUtility.NativeEventListener
         {
             if (Listeners.TryGetValue(context, out var listenerInstance))
             {
-                listenerInstance.OnApplicationWillChangeStatusBarOrientation(orientation);
+                listenerInstance.OnApplicationWillChangeStatusBarOrientation((UIInterfaceOrientation)orientation);
             }
         }
     }

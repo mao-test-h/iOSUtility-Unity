@@ -148,18 +148,9 @@ namespace _Example
                 Debug.Log($"{Tag} [IAppDelegateListener] OnApplicationWillChangeStatusBarFrame - Frame: ({x}, {y}, {width}, {height})");
             }
 
-            public void OnApplicationWillChangeStatusBarOrientation(int orientation)
+            public void OnApplicationWillChangeStatusBarOrientation(UIInterfaceOrientation orientation)
             {
-                var orientationName = orientation switch
-                {
-                    1 => "Portrait",
-                    2 => "LandscapeRight",
-                    3 => "PortraitUpsideDown",
-                    4 => "LandscapeLeft",
-                    _ => "Unknown"
-                };
-                Debug.Log(
-                    $"{Tag} [IAppDelegateListener] OnApplicationWillChangeStatusBarOrientation - Orientation: {orientationName} ({orientation})");
+                Debug.Log($"{Tag} [IAppDelegateListener] OnApplicationWillChangeStatusBarOrientation - Orientation: {orientation}");
             }
         }
     }

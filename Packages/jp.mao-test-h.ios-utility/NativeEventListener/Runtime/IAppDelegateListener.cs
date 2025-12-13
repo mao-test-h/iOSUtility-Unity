@@ -52,7 +52,31 @@ namespace iOSUtility.NativeEventListener
         /// <summary>
         /// ステータスバーの向きが変更される直前に呼ばれます。
         /// </summary>
-        /// <param name="orientation">新しい画面の向き (UIInterfaceOrientation: 1=Portrait, 2=LandscapeRight, 3=PortraitUpsideDown, 4=LandscapeLeft)</param>
-        void OnApplicationWillChangeStatusBarOrientation(int orientation);
+        /// <param name="orientation">新しい画面の向き</param>
+        void OnApplicationWillChangeStatusBarOrientation(UIInterfaceOrientation orientation);
+    }
+
+    /// <summary>
+    /// iOS の UIInterfaceOrientation に対応する画面の向き。
+    /// </summary>
+    /// <remarks>
+    /// 参考: <see href="https://developer.apple.com/documentation/uikit/uiinterfaceorientation">UIInterfaceOrientation</see>
+    /// </remarks>
+    public enum UIInterfaceOrientation
+    {
+        /// <summary>向きが不明</summary>
+        Unknown = 0,
+
+        /// <summary>縦向き (ホームボタンが下)</summary>
+        Portrait = 1,
+
+        /// <summary>縦向き逆さま (ホームボタンが上)</summary>
+        PortraitUpsideDown = 2,
+
+        /// <summary>横向き左 (ホームボタンが左)</summary>
+        LandscapeLeft = 3,
+
+        /// <summary>横向き右 (ホームボタンが右)</summary>
+        LandscapeRight = 4
     }
 }
