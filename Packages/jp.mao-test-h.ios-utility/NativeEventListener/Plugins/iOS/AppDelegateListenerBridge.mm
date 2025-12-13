@@ -75,13 +75,12 @@ typedef void (*ApplicationWillChangeStatusBarOrientationCallback)(void* context,
         NSDictionary* userInfo = notification.userInfo;
         NSValue* frameValue = userInfo[UIApplicationStatusBarFrameUserInfoKey];
         CGRect frame = [frameValue CGRectValue];
-
-        self.applicationWillChangeStatusBarFrameCallback(
-            (__bridge void*)self,
-            frame.origin.x,
-            frame.origin.y,
-            frame.size.width,
-            frame.size.height);
+        
+        self.applicationWillChangeStatusBarFrameCallback((__bridge void*)self,
+                                                         (float)frame.origin.x,
+                                                         (float)frame.origin.y,
+                                                         (float)frame.size.width,
+                                                         (float)frame.size.height);
     }
 }
 
@@ -91,10 +90,8 @@ typedef void (*ApplicationWillChangeStatusBarOrientationCallback)(void* context,
         NSDictionary* userInfo = notification.userInfo;
         NSNumber* orientationValue = userInfo[UIApplicationStatusBarOrientationUserInfoKey];
         int orientation = [orientationValue intValue];
-
-        self.applicationWillChangeStatusBarOrientationCallback(
-            (__bridge void*)self,
-            orientation);
+        
+        self.applicationWillChangeStatusBarOrientationCallback((__bridge void*)self, orientation);
     }
 }
 
