@@ -1,7 +1,5 @@
 # iOSUtility-Unity
 
-[English](README.md) | **日本語**
-
 ![Unity](https://img.shields.io/badge/Unity-2022.3%2B-black?logo=unity)
 ![iOS](https://img.shields.io/badge/iOS-13.0%2B-000000?logo=apple)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
