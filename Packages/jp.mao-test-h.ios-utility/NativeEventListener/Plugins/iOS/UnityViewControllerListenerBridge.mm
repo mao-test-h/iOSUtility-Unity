@@ -8,8 +8,6 @@ typedef void (*ViewWillDisappearCallback)(void* context, uint8_t animated);
 typedef void (*ViewDidDisappearCallback)(void* context, uint8_t animated);
 typedef void (*ViewWillAppearCallback)(void* context, uint8_t animated);
 typedef void (*ViewDidAppearCallback)(void* context, uint8_t animated);
-typedef void (*InterfaceWillChangeOrientationCallback)(void* context);
-typedef void (*InterfaceDidChangeOrientationCallback)(void* context);
 
 @interface UnityViewControllerListenerBridge : NSObject<UnityViewControllerListener>
 @property (nonatomic, assign) ViewWillLayoutSubviewsCallback viewWillLayoutSubviewsCallback;
@@ -18,8 +16,6 @@ typedef void (*InterfaceDidChangeOrientationCallback)(void* context);
 @property (nonatomic, assign) ViewDidDisappearCallback viewDidDisappearCallback;
 @property (nonatomic, assign) ViewWillAppearCallback viewWillAppearCallback;
 @property (nonatomic, assign) ViewDidAppearCallback viewDidAppearCallback;
-@property (nonatomic, assign) InterfaceWillChangeOrientationCallback interfaceWillChangeOrientationCallback;
-@property (nonatomic, assign) InterfaceDidChangeOrientationCallback interfaceDidChangeOrientationCallback;
 @end
 
 @implementation UnityViewControllerListenerBridge
@@ -74,20 +70,6 @@ typedef void (*InterfaceDidChangeOrientationCallback)(void* context);
     }
 }
 
-- (void)interfaceWillChangeOrientation:(NSNotification*)notification
-{
-    if (self.interfaceWillChangeOrientationCallback) {
-        self.interfaceWillChangeOrientationCallback((__bridge void*)self);
-    }
-}
-
-- (void)interfaceDidChangeOrientation:(NSNotification*)notification
-{
-    if (self.interfaceDidChangeOrientationCallback) {
-        self.interfaceDidChangeOrientationCallback((__bridge void*)self);
-    }
-}
-
 @end
 
 #ifdef __cplusplus
@@ -100,9 +82,7 @@ void* iOSUtility_NativeEventListener_CreateUnityViewControllerListenerBridge(
                                                                              ViewWillDisappearCallback viewWillDisappearCallback,
                                                                              ViewDidDisappearCallback viewDidDisappearCallback,
                                                                              ViewWillAppearCallback viewWillAppearCallback,
-                                                                             ViewDidAppearCallback viewDidAppearCallback,
-                                                                             InterfaceWillChangeOrientationCallback interfaceWillChangeOrientationCallback,
-                                                                             InterfaceDidChangeOrientationCallback interfaceDidChangeOrientationCallback)
+                                                                             ViewDidAppearCallback viewDidAppearCallback)
 {
     UnityViewControllerListenerBridge* bridge = [[UnityViewControllerListenerBridge alloc] init];
     bridge.viewWillLayoutSubviewsCallback = viewWillLayoutSubviewsCallback;
@@ -111,8 +91,6 @@ void* iOSUtility_NativeEventListener_CreateUnityViewControllerListenerBridge(
     bridge.viewDidDisappearCallback = viewDidDisappearCallback;
     bridge.viewWillAppearCallback = viewWillAppearCallback;
     bridge.viewDidAppearCallback = viewDidAppearCallback;
-    bridge.interfaceWillChangeOrientationCallback = interfaceWillChangeOrientationCallback;
-    bridge.interfaceDidChangeOrientationCallback = interfaceDidChangeOrientationCallback;
     return (__bridge_retained void*)bridge;
 }
 
@@ -125,8 +103,6 @@ void iOSUtility_NativeEventListener_ReleaseUnityViewControllerListenerBridge(voi
     bridge.viewDidDisappearCallback = nil;
     bridge.viewWillAppearCallback = nil;
     bridge.viewDidAppearCallback = nil;
-    bridge.interfaceWillChangeOrientationCallback = nil;
-    bridge.interfaceDidChangeOrientationCallback = nil;
 }
 
 void iOSUtility_NativeEventListener_UnityRegisterViewControllerListener(void* ptr)

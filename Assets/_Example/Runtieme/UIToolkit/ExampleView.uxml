@@ -12,6 +12,10 @@
         <ui:VisualElement class="example-view__content">
             <ui:Button name="ShareButton" text="Share Screenshot" class="example-view__share-button" />
             <ui:Button name="PlayVideoButton" text="Play Video" class="example-view__share-button" />
+            <ui:VisualElement class="example-view__native-view-button-container">
+                <ui:Button name="AddNativeViewButton" text="Add Native View" class="example-view__share-button" />
+                <ui:Button name="RemoveNativeViewButton" text="Remove Native View" class="example-view__share-button" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

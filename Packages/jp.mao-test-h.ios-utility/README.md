@@ -58,7 +58,6 @@ Monitor iOS native events from Unity with three types of listeners:
 - `OnViewWillLayoutSubviews` / `OnViewDidLayoutSubviews`
 - `OnViewWillAppear` / `OnViewDidAppear`
 - `OnViewWillDisappear` / `OnViewDidDisappear`
-- `OnInterfaceWillChangeOrientation` / `OnInterfaceDidChangeOrientation`
 
 #### LifeCycle Listener
 - `OnDidFinishLaunching`
@@ -74,7 +73,7 @@ Monitor iOS native events from Unity with three types of listeners:
 - `OnApplicationDidReceiveMemoryWarning` - Memory warning notifications
 - `OnApplicationSignificantTimeChange` - Significant time change events
 - `OnApplicationWillChangeStatusBarFrame` - Status bar frame change notifications
-- `OnApplicationWillChangeStatusBarOrientation` - Status bar orientation changes (uses `UIInterfaceOrientation` enum)
+- `OnApplicationWillChangeStatusBarOrientation` - Status bar orientation changes
 
 
 

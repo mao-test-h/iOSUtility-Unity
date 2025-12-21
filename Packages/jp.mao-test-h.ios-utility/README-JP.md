@@ -56,7 +56,6 @@ Unity から iOS のネイティブイベントを監視できます。3種類�
 - `OnViewWillLayoutSubviews` / `OnViewDidLayoutSubviews`
 - `OnViewWillAppear` / `OnViewDidAppear`
 - `OnViewWillDisappear` / `OnViewDidDisappear`
-- `OnInterfaceWillChangeOrientation` / `OnInterfaceDidChangeOrientation`
 
 #### LifeCycle Listener
 - `OnDidFinishLaunching`
@@ -72,7 +71,7 @@ Unity から iOS のネイティブイベントを監視できます。3種類�
 - `OnApplicationDidReceiveMemoryWarning` - メモリ警告の通知
 - `OnApplicationSignificantTimeChange` - 時刻の大幅な変更イベント
 - `OnApplicationWillChangeStatusBarFrame` - ステータスバーのフレーム変更通知
-- `OnApplicationWillChangeStatusBarOrientation` - ステータスバーの向き変更（`UIInterfaceOrientation` enum を使用）
+- `OnApplicationWillChangeStatusBarOrientation` - ステータスバーの向き変更
 
 
 
