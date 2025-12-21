@@ -6,6 +6,7 @@ namespace iOSUtility.NativeEventListener
     /// <remarks>
     /// このインターフェースは Unity の PluginBase にある @protocol AppDelegateListener に対応しています。
     /// 各メソッドは iOS の UIApplicationDelegate のメソッドに対応する通知を受け取ります。
+    /// TODO: ILifeCycleListener を継承するようにする
     /// </remarks>
     public interface IAppDelegateListener
     {
