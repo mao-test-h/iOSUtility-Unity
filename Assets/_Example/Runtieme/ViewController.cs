@@ -11,8 +11,11 @@ namespace _Example
     {
         [SerializeField] private UIDocument uiDocument;
 
+        private readonly INativeUIController _nativeUIController = NativeUIControllerFactory.CreateNativeUIController();
         private Button _shareButton;
         private Button _playVideoButton;
+        private Button _addNativeViewButton;
+        private Button _removeNativeViewButton;
         private Label _frameCountLabel;
 
         private void Start()
@@ -29,6 +32,14 @@ namespace _Example
             Assert.IsTrue(_playVideoButton != null, "PlayVideoButton not found in UXML.");
             _playVideoButton.clicked += OnPlayVideoButtonClicked;
 
+            _addNativeViewButton = root.Q<Button>("AddNativeViewButton");
+            Assert.IsTrue(_addNativeViewButton != null, "AddNativeViewButton not found in UXML.");
+            _addNativeViewButton.clicked += OnAddNativeViewButtonClicked;
+
+            _removeNativeViewButton = root.Q<Button>("RemoveNativeViewButton");
+            Assert.IsTrue(_removeNativeViewButton != null, "RemoveNativeViewButton not found in UXML.");
+            _removeNativeViewButton.clicked += OnRemoveNativeViewButtonClicked;
+
             _frameCountLabel = root.Q<Label>("FrameCountLabel");
             Assert.IsTrue(_frameCountLabel != null, "FrameCountLabel not found in UXML.");
         }
@@ -42,6 +53,9 @@ namespace _Example
         {
             _shareButton.clicked -= OnShareButtonClicked;
             _playVideoButton.clicked -= OnPlayVideoButtonClicked;
+            _addNativeViewButton.clicked -= OnAddNativeViewButtonClicked;
+            _removeNativeViewButton.clicked -= OnRemoveNativeViewButtonClicked;
+            _nativeUIController.Dispose();
         }
 
         private void OnShareButtonClicked()
@@ -55,6 +69,16 @@ namespace _Example
             const string url = "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8";
             var ret = Handheld.PlayFullScreenMovie(url);
             Debug.Log($"Handheld.PlayFullScreenMovie returned {ret}");
+        }
+
+        private void OnAddNativeViewButtonClicked()
+        {
+            _nativeUIController.AddSubview();
+        }
+
+        private void OnRemoveNativeViewButtonClicked()
+        {
+            _nativeUIController.RemoveSubview();
         }
 
         private IEnumerator CaptureAndShareScreenshot()

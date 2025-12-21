@@ -25,6 +25,13 @@
     padding-bottom: 50px;
 }
 
+/* Element: example-view__native-view-button-container */
+.example-view__native-view-button-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Element: example-view__share-button */
 .example-view__share-button {
     margin-top: 8px;
