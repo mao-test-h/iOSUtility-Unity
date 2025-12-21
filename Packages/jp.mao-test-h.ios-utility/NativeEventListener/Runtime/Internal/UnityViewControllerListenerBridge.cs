@@ -21,9 +21,7 @@ namespace iOSUtility.NativeEventListener
                 ViewWillDisappearCallbackStatic,
                 ViewDidDisappearCallbackStatic,
                 ViewWillAppearCallbackStatic,
-                ViewDidAppearCallbackStatic,
-                InterfaceWillChangeOrientationCallbackStatic,
-                InterfaceDidChangeOrientationCallbackStatic);
+                ViewDidAppearCallbackStatic);
 
             Assert.IsNotNull(lifecycleListener);
             Listeners[ptr] = lifecycleListener;
@@ -68,9 +66,7 @@ namespace iOSUtility.NativeEventListener
             ViewWillDisappearCallback viewWillDisappearCallback,
             ViewDidDisappearCallback viewDidDisappearCallback,
             ViewWillAppearCallback viewWillAppearCallback,
-            ViewDidAppearCallback viewDidAppearCallback,
-            InterfaceWillChangeOrientationCallback interfaceWillChangeOrientationCallback,
-            InterfaceDidChangeOrientationCallback interfaceDidChangeOrientationCallback);
+            ViewDidAppearCallback viewDidAppearCallback);
 
         [DllImport("__Internal", EntryPoint = "iOSUtility_NativeEventListener_ReleaseUnityViewControllerListenerBridge")]
         private static extern void ReleaseUnityViewControllerListenerBridge(IntPtr ptr);
@@ -93,10 +89,6 @@ namespace iOSUtility.NativeEventListener
         private delegate void ViewWillAppearCallback(IntPtr context, byte animated);
 
         private delegate void ViewDidAppearCallback(IntPtr context, byte animated);
-
-        private delegate void InterfaceWillChangeOrientationCallback(IntPtr context);
-
-        private delegate void InterfaceDidChangeOrientationCallback(IntPtr context);
 
         [MonoPInvokeCallback(typeof(ViewWillLayoutSubviewsCallback))]
         private static void ViewWillLayoutSubviewsCallbackStatic(IntPtr context)
@@ -149,24 +141,6 @@ namespace iOSUtility.NativeEventListener
             if (Listeners.TryGetValue(context, out var listenerInstance))
             {
                 listenerInstance.OnViewDidAppearCallbacks(animated != 0);
-            }
-        }
-
-        [MonoPInvokeCallback(typeof(InterfaceWillChangeOrientationCallback))]
-        private static void InterfaceWillChangeOrientationCallbackStatic(IntPtr context)
-        {
-            if (Listeners.TryGetValue(context, out var listenerInstance))
-            {
-                listenerInstance.OnInterfaceWillChangeOrientationCallbacks();
-            }
-        }
-
-        [MonoPInvokeCallback(typeof(InterfaceDidChangeOrientationCallback))]
-        private static void InterfaceDidChangeOrientationCallbackStatic(IntPtr context)
-        {
-            if (Listeners.TryGetValue(context, out var listenerInstance))
-            {
-                listenerInstance.OnInterfaceDidChangeOrientationCallbacks();
             }
         }
     }

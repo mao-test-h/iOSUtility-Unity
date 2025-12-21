@@ -37,15 +37,5 @@ namespace iOSUtility.NativeEventListener
         /// <see href="https://developer.apple.com/documentation/uikit/uiviewcontroller/viewdidappear(_:)">`UIViewController.viewDidAppear(_:)`</see>
         /// </summary>
         void OnViewDidAppearCallbacks(bool animated);
-
-        /// <summary>
-        /// デバイスの画面方向が変更される直前に呼ばれます。
-        /// </summary>
-        void OnInterfaceWillChangeOrientationCallbacks();
-
-        /// <summary>
-        /// デバイスの画面方向が変更された直後に呼ばれます。
-        /// </summary>
-        void OnInterfaceDidChangeOrientationCallbacks();
     }
 }
