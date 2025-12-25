@@ -1,0 +1,16 @@
+{
+    "name": "iOSUtility.NativeEventListener.Editor",
+    "rootNamespace": "iOSUtility.NativeEventListener.Editor",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

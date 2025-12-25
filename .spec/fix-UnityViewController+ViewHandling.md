@@ -8,6 +8,7 @@
 
 - 以下の `interfaceWillChangeOrientationTo`, `interfaceDidChangeOrientationFrom` を after のように書き換えてください。
 - また、Replace, Append どちらも対応できるように都度既に書き込み済みかをチェックし、書き込み済みであれば無視してください
+- コードは `./Packages/jp.mao-test-h.ios-utility/NativeEventListener/Editor/XcodePostProcess.cs` に実装してください
 
 **Before**
 
