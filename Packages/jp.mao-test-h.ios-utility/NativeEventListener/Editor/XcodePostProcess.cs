@@ -28,7 +28,7 @@ namespace iOSUtility.NativeEventListener.Editor
             var filePath = Path.Combine(xcodeprojPath, "Classes", "UI", "UnityAppController+ViewHandling.mm");
             if (!File.Exists(filePath))
             {
-                Debug.LogWarning(
+                Debug.LogError(
                     $"{LogPrefix} UnityAppController+ViewHandling.mm not found at: {filePath}\n" +
                     "This may be due to a Unity version update. Orientation change notifications will not work.");
                 return;
