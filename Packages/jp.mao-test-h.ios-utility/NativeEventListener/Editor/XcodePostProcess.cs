@@ -9,11 +9,16 @@ namespace iOSUtility.NativeEventListener.Editor
     internal static class XcodePostProcess
     {
         private const string LogPrefix = "[NativeEventListener.PostProcess]";
+        private const string NotificationKeyWillChangeOrientation = "kUnityInterfaceWillChangeOrientation";
+        private const string NotificationKeyDidChangeOrientation = "kUnityInterfaceDidChangeOrientation";
 
         [PostProcessBuild]
         private static void OnPostProcessBuild(BuildTarget target, string xcodeprojPath)
         {
-            if (target != BuildTarget.iOS) return;
+            if (target != BuildTarget.iOS)
+            {
+                return;
+            }
 
             PatchUnityAppController(xcodeprojPath);
         }
@@ -34,15 +39,15 @@ namespace iOSUtility.NativeEventListener.Editor
             fileContent = PatchMethod(
                 fileContent,
                 "- (void)interfaceWillChangeOrientationTo:(UIInterfaceOrientation)toInterfaceOrientation",
-                "AppController_SendUnityViewControllerNotification(@\"kUnityInterfaceWillChangeOrientation\");",
-                "kUnityInterfaceWillChangeOrientation"
+                $"AppController_SendUnityViewControllerNotification(@\"{NotificationKeyWillChangeOrientation}\");    // Added by iOSUtility.NativeEventListener",
+                NotificationKeyWillChangeOrientation
             );
 
             fileContent = PatchMethod(
                 fileContent,
                 "- (void)interfaceDidChangeOrientationFrom:(UIInterfaceOrientation)fromInterfaceOrientation",
-                "AppController_SendUnityViewControllerNotification(@\"kUnityInterfaceDidChangeOrientation\");",
-                "kUnityInterfaceDidChangeOrientation"
+                $"AppController_SendUnityViewControllerNotification(@\"{NotificationKeyDidChangeOrientation}\");    // Added by iOSUtility.NativeEventListener",
+                NotificationKeyDidChangeOrientation
             );
 
             File.WriteAllText(filePath, fileContent);
