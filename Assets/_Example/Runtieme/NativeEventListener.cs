@@ -61,6 +61,16 @@ namespace _Example
             {
                 Debug.Log($"{Tag} [IUnityViewControllerListener] OnViewDidAppear (animated: {animated})");
             }
+
+            public void OnInterfaceWillChangeOrientationCallbacks()
+            {
+                Debug.Log($"{Tag} [IUnityViewControllerListener] OnInterfaceWillChangeOrientation");
+            }
+
+            public void OnInterfaceDidChangeOrientationCallbacks()
+            {
+                Debug.Log($"{Tag} [IUnityViewControllerListener] OnInterfaceDidChangeOrientation");
+            }
         }
 
         private sealed class LifeCycleListener : ILifeCycleListener
